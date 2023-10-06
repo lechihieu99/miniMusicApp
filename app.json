@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "nativeProject",
-    "slug": "nativeProject",
+    "name": "Mini Music App",
+    "slug": "music",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/backgroundImage.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#15162e"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/vinyl-icon.png",
+        "backgroundColor": "#15162e"
+      },
+      "package": "com.music.myapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/vinyl-icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f017214-2573-4ef2-b53f-6384e8628e4e"
+      }
     }
   }
 }
