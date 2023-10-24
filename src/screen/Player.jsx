@@ -141,7 +141,7 @@ const Player = ({ navigation, song, setSong, setPlaylist, list, setList, playSou
     const FirstRoute = () => {
         return (
             <View style={[styles.scene, { height: (Dimensions.get('screen').height - 112) * 0.7 }]}>
-                <ScrollView style={{ height: '100%', width: '100%' }}>
+                <ScrollView>
                     {temp?.map((item) => (
                         <TouchableOpacity key={item.encodeId} onPress={() => handleChangeSong(item)}>
                             <View style={{ display: 'flex', flexDirection: 'row', marginHorizontal: 6, paddingHorizontal: 6, paddingVertical: 6, gap: 12, backgroundColor: item.encodeId === song?.encodeId ? "rgba(0,0,0,0.5)" : "transparent" }}>
@@ -174,7 +174,7 @@ const Player = ({ navigation, song, setSong, setPlaylist, list, setList, playSou
                             </View>
                         </TouchableOpacity>
                     ))}
-                    {list?.length > 10 && (
+                    {list?.length > 10 && temp?.length < list?.length && (
                         <TouchableOpacity style={{ alignItems: 'center', paddingTop: 12 }} onPress={() => loadMore()}>
                             <View style={{ paddingHorizontal: 12, paddingVertical: 3, borderRadius: 20, borderStyle: 'solid', borderColor: 'white', borderWidth: 1 }}>
                                 <Text style={{ color: 'white', fontSize: 10 }}>Xem thêm</Text>

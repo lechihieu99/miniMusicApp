@@ -9,6 +9,7 @@ import Carousel, { Pagination } from 'react-native-x-carousel';
 import TextTicker from 'react-native-text-ticker'
 import { getChart, getHexColor, getHome, getSong } from "../redux/slice/music.slice"
 
+import * as Updates from 'expo-updates';
 
 const Home = ({ navigation, song, setSong, setPlaylist, setList, list, setSound, playSound, setShowController, pack, setPack }) => {
     const dispatch = useDispatch()
@@ -97,6 +98,20 @@ const Home = ({ navigation, song, setSong, setPlaylist, setList, list, setSound,
         setPack('neverRender')
         await navigation.navigate('Player')
     }
+
+    const onFetchUpdateAsync = async () => {
+        try {
+            const update = await Updates.checkForUpdateAsync();
+
+            if (update.isAvailable) {
+                await Updates.fetchUpdateAsync();
+                await Updates.reloadAsync();
+            }
+        } catch (error) {
+            // You can also add an alert() to see the error message in case of an error when fetching updates.
+            alert(`Error fetching latest Expo update: ${error}`);
+        }
+    }
     return (
         <>
             <View style={{ flex: 1, backgroundColor: '#15162e', paddingBottom: song ? 54 : 0 }}>
@@ -159,9 +174,11 @@ const Home = ({ navigation, song, setSong, setPlaylist, setList, list, setSound,
                                     <FontAwesome5 name="chevron-left" color='white' size={22} />
                                 </TouchableOpacity> */}
                                 <Text style={styles.textColor}>Home</Text>
-                                <View style={{ position: 'absolute', top: 'calc(50% - 11px)', right: 12 }} onPress={() => { }}>
-                                    <FontAwesome5 name="compact-disc" color='white' size={22} />
-                                </View>
+                                <TouchableOpacity onPress={onFetchUpdateAsync} style={{ position: 'absolute', top: 'calc(50% - 11px)', right: 12 }}>
+                                    <View >
+                                        <FontAwesome5 name="arrow-alt-circle-up" color='white' size={22} />
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </LinearGradient>

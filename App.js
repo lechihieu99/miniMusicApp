@@ -18,6 +18,8 @@ import { Button } from 'react-native-paper';
 import Slider from 'react-native-slider';
 import { getSong } from './src/redux/slice/music.slice';
 
+import * as Updates from 'expo-updates';
+
 import { useKeepAwake } from 'expo-keep-awake';
 // import BackgroundTask from 'react-native-background-actions'
 
@@ -428,9 +430,13 @@ function AppMusic() {
     // button.current.onPress()
   }, [songData, pack])
 
-  useEffect(() => {
-    console.log(focusPlayer)
-  }, [focusPlayer])
+  // useEffect(() => {
+  //   console.log(focusPlayer)
+  // }, [focusPlayer])
+
+  // useEffect(() => {
+  //   onFetchUpdateAsync()
+  // }, [])
 
   const nextSong = async (next) => {
     await testSound.current.setPositionAsync(0)
@@ -452,6 +458,8 @@ function AppMusic() {
     shouldDuckAndroid: true,
     playThroughEarpieceAndroid: false
   });
+
+
 
   const playSound = async (url) => {
     setIsPlaying(false)
@@ -586,7 +594,6 @@ function AppMusic() {
 
         />
       )}
-      {/* <Button title="I don't know" onPress={toggleBackground} /> */}
 
     </NavigationContainer>
   );
